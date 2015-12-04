@@ -131,13 +131,13 @@ while memecount < 30:
             print "next offer button clicked"
             browser.find_element_by_link_text("Earn 6.00 More Points").click()
             header1 = "discoverbet"
-            offerWindowHandle = parentWindowHandle
+            offerWindowHandle = None
             print "Black has continued"
 
         elif buttonCheck.lower() == s3Buttons.lower():
             header1 = "discovermashable"
             print "Potatoes has continued"
-            offerWindowHandle = parentWindowHandle
+            offerWindowHandle = None
             browser.find_element_by_link_text("Earn 1.00 More Points").click()
 
         else:
@@ -224,7 +224,7 @@ while memecount < 30:
 
         if buttonCheck.lower() == s1Buttons.lower():
             header1 = "discoverunivision"
-	    offerWindowHandle = parentWindowHandle
+	    offerWindowHandle = None
             print "Spanish has continued"
             browser.find_element_by_xpath("//button").click()
 
@@ -235,7 +235,7 @@ while memecount < 30:
 
         elif buttonCheck.lower() == s3Buttons.lower():
             header1 = "discovermashable"
-	    offerWindowHandle = parentWindowHandle
+	    offerWindowHandle = None
             print "Potatoes has continued"
             browser.find_element_by_xpath("//button").click()
 
@@ -309,13 +309,13 @@ while memecount < 30:
 
         if buttonCheck.lower() == s1Buttons.lower():
             header1 = "discoverunivision"
-	    offerWindowHandle = parentWindowHandle
+	    offerWindowHandle = None
             print "Spanish has continued"
             browser.find_element_by_xpath("//button").click()
 
         elif buttonCheck.lower() == s2Buttons.lower():
             header1 = "discoverbet"
-	    offerWindowHandle = parentWindowHandle
+	    offerWindowHandle = None
             print "Black has continued"
             browser.find_element_by_xpath("//button").click()
 
@@ -344,5 +344,8 @@ print(curTime_String)
 f = open("time.txt", "w")
 f.write(curTime_String)
 f.close()
+
+
+
 
 
