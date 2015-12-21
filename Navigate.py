@@ -344,6 +344,7 @@ def Mashables():
     global offerWindowHandle
     global memecount
     global claimButtons
+
     waiter = WebDriverWait(browser, 180)
     
     element = waiter.until(EC.element_to_be_clickable((By.ID,"next-step-button")))
@@ -376,7 +377,7 @@ def Mashables():
     element = waiter.until(EC.element_to_be_clickable((By.ID,"next-step-button")))
     print "Step ten done waiting"
     browser.find_element_by_xpath("//button").click()
-    element = waiter.until(EC.element_to_be_clickable((By.XPATH,"//button"))
+    element = waiter.until(EC.element_to_be_clickable((By.XPATH,"//button")))
     buttonCheck = browser.find_element_by_xpath("//button").text
     buttonCheck = buttonCheck.replace(" ","")
 
