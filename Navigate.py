@@ -137,7 +137,7 @@ def univision():
         offerWindowHandle = None
         browser.find_element_by_link_text("Earn 4.00 More Points").click()
 
-    elif buttonCheck.ower() == s4Buttons.lower():
+    elif buttonCheck.lower() == s4Buttons.lower():
         header1 = discover
         print "mashy has continued"
         OfferWindowHandle = None
@@ -203,7 +203,7 @@ def BET():
         element = waiter.until(EC.element_to_be_clickable((By.XPATH,"//button")))
         print "Claim Waiting"
         browser.find_element_by_xpath("//button").click()
-    except ValueError:
+    except BaseException:
         print "Black broke"
         
     time.sleep(2)
@@ -230,7 +230,7 @@ def BET():
         print "Potatoes has continued"
         browser.find_element_by_xpath("//button").click()
 
-    elif buttonCheck.ower() == s4Buttons.lower():
+    elif buttonCheck.lower() == s4Buttons.lower():
         header1 = discover
         print "mashy has continued"
         OfferWindowHandle = None
@@ -291,7 +291,7 @@ def mashybals():
         element = waiter.until(EC.element_to_be_clickable((By.XPATH,"//button")))
         print "Claim Waiting"
         browser.find_element_by_xpath("//button").click()
-    except ValueError:
+    except BaseException:
         print "something broke potatoes"
 
     time.sleep(2)
@@ -316,7 +316,7 @@ def mashybals():
         print "Small bet has continued"
         browser.find_element_by_xpath("//button").click()
 
-    elif buttonCheck.ower() == s4Buttons.lower():
+    elif buttonCheck.lower() == s4Buttons.lower():
         header1 = discover
         print "mashy has continued"
         OfferWindowHandle = None
@@ -410,7 +410,7 @@ def Mashables():
 	offerWindowHandle = None
         print "Potatoes has continued"
         browser.find_element_by_xpath("//button").click()
-    elif buttonCheck.ower() == s4Buttons.lower():
+    elif buttonCheck.lower() == s4Buttons.lower():
         header1 = discover
         print "mashy has continued"
         browser.find_element_by_link_text("Earn 2.00 More Points").click()
