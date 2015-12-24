@@ -9,8 +9,8 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 
-
 memecount = 0
+refresh = 0
 s1Buttons = "Earn3.00MorePoints"
 s2Buttons = "Earn6.00MorePoints"
 s3Buttons = "Earn4.00MorePoints"
@@ -21,11 +21,12 @@ s2 = "DISCOVERBET"
 s3 = "discoversmallbet"
 s4 = "DISCOVERMASHABLE"
 titleCompare1 = "REWARDRACK|OFFER:MASHABLE"
-
+failCount = 0
 title = ""
 header1 = ""
 parentWindowHandle = None
 offerWindowHandle = None
+browser = None
 
 
 def titleCheck():
@@ -43,10 +44,14 @@ def titleCheck():
     global parentWindowHandle
     global offerWindowHandle
     global memecount
-    if memecount<1:
+    global failCount
+    global browser
+    global refresh
+    if refresh<1:
 	    while not parentWindowHandle:
                 parentWindowHandle = browser.current_window_handle
             browser.find_element_by_xpath("//button").click()
+            refresh +=1
         
     while not offerWindowHandle:
         for handle in browser.window_handles:
@@ -75,40 +80,49 @@ def univision():
     global parentWindowHandle
     global offerWindowHandle
     global memecount
+    global failCount
+    global browser
     waiter = WebDriverWait(browser, 180)
-    element = waiter.until(EC.element_to_be_clickable((By.ID,"btn-next-step")))
-    print "Step one done waiting"
-    browser.find_element_by_link_text("Next Step").click()
-    element = waiter.until(EC.element_to_be_clickable((By.ID,"btn-next-step")))
-    print "Step two done waiting"
-    browser.find_element_by_link_text("Next Step").click()
-    element = waiter.until(EC.element_to_be_clickable((By.ID,"btn-next-step")))
-    print "Step three done waiting"
-    browser.find_element_by_link_text("Next Step").click()
-    element = waiter.until(EC.element_to_be_clickable((By.ID,"btn-next-step")))
-    print "Step four done waiting"
-    browser.find_element_by_link_text("Next Step").click()
-    element = waiter.until(EC.element_to_be_clickable((By.ID,"btn-next-step")))
-    print "Step five done waiting"
-    browser.find_element_by_link_text("Next Step").click()
-    element = waiter.until(EC.element_to_be_clickable((By.ID,"btn-next-step")))
-    print "Step six done waiting"
-    browser.find_element_by_link_text("Next Step").click()
-    element = waiter.until(EC.element_to_be_clickable((By.ID,"btn-next-step")))
-    print "Step seven done waiting"
-    browser.find_element_by_link_text("Next Step").click()
-    element = waiter.until(EC.element_to_be_clickable((By.ID,"btn-next-step")))
-    print "Step eight done waiting"
-    browser.find_element_by_link_text("Next Step").click()
-    element = waiter.until(EC.element_to_be_clickable((By.ID,"btn-next-step")))
-    print "Step nine done waiting"
-    browser.find_element_by_link_text("Next Step").click()
-    element = waiter.until(EC.element_to_be_clickable((By.ID,"btn-next-step")))
-    print "Step 10 done waiting"
-    browser.find_element_by_link_text("Next Step").click()
-    element = waiter.until(EC.element_to_be_clickable((By.XPATH,"//a")))
-    print "Claim waiting"
-    browser.find_element_by_xpath("//a").click()
+    try:
+        element = waiter.until(EC.element_to_be_clickable((By.ID,"btn-next-step")))
+        print "Step one done waiting"
+        browser.find_element_by_link_text("Next Step").click()
+        element = waiter.until(EC.element_to_be_clickable((By.ID,"btn-next-step")))
+        print "Step two done waiting"
+        browser.find_element_by_link_text("Next Step").click()
+        element = waiter.until(EC.element_to_be_clickable((By.ID,"btn-next-step")))
+        print "Step three done waiting"
+        browser.find_element_by_link_text("Next Step").click()
+        element = waiter.until(EC.element_to_be_clickable((By.ID,"btn-next-step")))
+        print "Step four done waiting"
+        browser.find_element_by_link_text("Next Step").click()
+        element = waiter.until(EC.element_to_be_clickable((By.ID,"btn-next-step")))
+        print "Step five done waiting"
+        browser.find_element_by_link_text("Next Step").click()
+        element = waiter.until(EC.element_to_be_clickable((By.ID,"btn-next-step")))
+        print "Step six done waiting"
+        browser.find_element_by_link_text("Next Step").click()
+        element = waiter.until(EC.element_to_be_clickable((By.ID,"btn-next-step")))
+        print "Step seven done waiting"
+        browser.find_element_by_link_text("Next Step").click()
+        element = waiter.until(EC.element_to_be_clickable((By.ID,"btn-next-step")))
+        print "Step eight done waiting"
+        browser.find_element_by_link_text("Next Step").click()
+        element = waiter.until(EC.element_to_be_clickable((By.ID,"btn-next-step")))
+        print "Step nine done waiting"
+        browser.find_element_by_link_text("Next Step").click()
+        element = waiter.until(EC.element_to_be_clickable((By.ID,"btn-next-step")))
+        print "Step 10 done waiting"
+        browser.find_element_by_link_text("Next Step").click()
+        element = waiter.until(EC.element_to_be_clickable((By.XPATH,"//a")))
+        print "Claim waiting"
+        browser.find_element_by_xpath("//a").click()
+    except BaseException:
+        failCount += 1
+        print "BROKEN COUNTER: " + str(failCount)
+        if failCount <= 3:
+            browser.quit()
+            Main(memecount)
         
 
     time.sleep(2)
@@ -165,6 +179,8 @@ def BET():
     global parentWindowHandle
     global offerWindowHandle
     global memecount
+    global failCount
+    global browser
     waiter = WebDriverWait(browser, 180)
     try:
         element = waiter.until(EC.element_to_be_clickable((By.ID,"next-step-button")))
@@ -204,7 +220,11 @@ def BET():
         print "Claim Waiting"
         browser.find_element_by_xpath("//button").click()
     except BaseException:
-        print "Black broke"
+        failCount += 1
+        print "BROKEN COUNTER: " + str(failCount)
+        if failCount <= 3:
+            browser.quit()
+            Main(memecount)
         
     time.sleep(2)
     memecount += 1
@@ -256,6 +276,8 @@ def mashybals():
     global parentWindowHandle
     global offerWindowHandle
     global memecount
+    global failCount
+    global browser
     waiter = WebDriverWait(browser, 180)
     try:
         element = waiter.until(EC.element_to_be_clickable((By.ID,"next-step-button")))
@@ -292,7 +314,11 @@ def mashybals():
         print "Claim Waiting"
         browser.find_element_by_xpath("//button").click()
     except BaseException:
-        print "something broke potatoes"
+        failCount += 1
+        print "BROKEN COUNTER: " + str(failCount)
+        if failCount <= 3:
+            browser.quit()
+            Main(memecount)
 
     time.sleep(2)
     memecount += 1
@@ -343,52 +369,60 @@ def Mashables():
     global parentWindowHandle
     global offerWindowHandle
     global memecount
+    global failCount
     global claimButtons
+    global browser
 
     waiter = WebDriverWait(browser, 180)
-    
-    element = waiter.until(EC.element_to_be_clickable((By.ID,"next-step-button")))
-    print "Step one done waiting"
-    browser.find_element_by_xpath("//button").click()
-    element = waiter.until(EC.element_to_be_clickable((By.ID,"next-step-button")))
-    print "Step two done waiting"
-    browser.find_element_by_xpath("//button").click()
-    element = waiter.until(EC.element_to_be_clickable((By.ID,"next-step-button")))
-    print "Step three done waiting"
-    browser.find_element_by_xpath("//button").click()
-    element = waiter.until(EC.element_to_be_clickable((By.ID,"next-step-button")))
-    print "Step four done waiting"
-    browser.find_element_by_xpath("//button").click()
-    element = waiter.until(EC.element_to_be_clickable((By.ID,"next-step-button")))
-    print "Step five done waiting"
-    browser.find_element_by_xpath("//button").click()
-    element = waiter.until(EC.element_to_be_clickable((By.ID,"next-step-button")))
-    print "Step six done waiting"
-    browser.find_element_by_xpath("//button").click()
-    element = waiter.until(EC.element_to_be_clickable((By.ID,"next-step-button")))
-    print "Step seven done waiting"
-    browser.find_element_by_xpath("//button").click()
-    element = waiter.until(EC.element_to_be_clickable((By.ID,"next-step-button")))
-    print "Step eight done waiting"
-    browser.find_element_by_xpath("//button").click()
-    element = waiter.until(EC.element_to_be_clickable((By.ID,"next-step-button")))
-    print "Step nine done waiting"
-    browser.find_element_by_xpath("//button").click()
-    element = waiter.until(EC.element_to_be_clickable((By.ID,"next-step-button")))
-    print "Step ten done waiting"
-    browser.find_element_by_xpath("//button").click()
-    element = waiter.until(EC.element_to_be_clickable((By.XPATH,"//button")))
-    buttonCheck = browser.find_element_by_xpath("//button").text
-    buttonCheck = buttonCheck.replace(" ","")
-
-    if buttonCheck.lower() == claimButtons.lower():
+    try:
+        element = waiter.until(EC.element_to_be_clickable((By.ID,"next-step-button")))
+        print "Step one done waiting"
         browser.find_element_by_xpath("//button").click()
-    else:
-        print "Step eleven done waiting"
+        element = waiter.until(EC.element_to_be_clickable((By.ID,"next-step-button")))
+        print "Step two done waiting"
+        browser.find_element_by_xpath("//button").click()
+        element = waiter.until(EC.element_to_be_clickable((By.ID,"next-step-button")))
+        print "Step three done waiting"
+        browser.find_element_by_xpath("//button").click()
+        element = waiter.until(EC.element_to_be_clickable((By.ID,"next-step-button")))
+        print "Step four done waiting"
+        browser.find_element_by_xpath("//button").click()
+        element = waiter.until(EC.element_to_be_clickable((By.ID,"next-step-button")))
+        print "Step five done waiting"
+        browser.find_element_by_xpath("//button").click()
+        element = waiter.until(EC.element_to_be_clickable((By.ID,"next-step-button")))
+        print "Step six done waiting"
+        browser.find_element_by_xpath("//button").click()
+        element = waiter.until(EC.element_to_be_clickable((By.ID,"next-step-button")))
+        print "Step seven done waiting"
+        browser.find_element_by_xpath("//button").click()
+        element = waiter.until(EC.element_to_be_clickable((By.ID,"next-step-button")))
+        print "Step eight done waiting"
+        browser.find_element_by_xpath("//button").click()
+        element = waiter.until(EC.element_to_be_clickable((By.ID,"next-step-button")))
+        print "Step nine done waiting"
+        browser.find_element_by_xpath("//button").click()
+        element = waiter.until(EC.element_to_be_clickable((By.ID,"next-step-button")))
+        print "Step ten done waiting"
         browser.find_element_by_xpath("//button").click()
         element = waiter.until(EC.element_to_be_clickable((By.XPATH,"//button")))
-        print "Claim Waiting"
-        browser.find_element_by_xpath("//button").click()    
+        buttonCheck = browser.find_element_by_xpath("//button").text
+        buttonCheck = buttonCheck.replace(" ","")
+
+        if buttonCheck.lower() == claimButtons.lower():
+            browser.find_element_by_xpath("//button").click()
+        else:
+            print "Step eleven done waiting"
+            browser.find_element_by_xpath("//button").click()
+            element = waiter.until(EC.element_to_be_clickable((By.XPATH,"//button")))
+            print "Claim Waiting"
+            browser.find_element_by_xpath("//button").click()
+    except BaseException:
+        failCount += 1
+        print "BROKEN COUNTER: " + str(failCount)
+        if failCount <= 3:
+            browser.quit()
+            Main(memecount)
         
     time.sleep(2)
     memecount += 1
@@ -424,106 +458,136 @@ def Mashables():
 
 
 
+def Main(x):
+    global s1Buttons
+    global s2Buttons
+    global s3Buttons
+    global s1
+    global s2
+    global s3
+    global titleCompare1
+    global title
+    global header1
+    global parentWindowHandle
+    global offerWindowHandle
+    global memecount
+    global failCount
+    global browser
+    global refresh
 
-file = open('Credentials.txt')
-info = file.readlines()
-
-usernameWords = info[0].replace("\n","")
-passwordWords = info[1]
-
-print usernameWords
-print passwordWords
-
-browser = webdriver.Firefox()
-
-browser.delete_all_cookies()
-browser.get('http://www.rewardrack.com')
-time.sleep(3)
-browser.find_element_by_link_text("Sign In").click()
-
-username = browser.find_element_by_id("loginform-username")
-username.send_keys(str(usernameWords))
-
-password = browser.find_element_by_id("loginform-password")
-password.send_keys(str(passwordWords))
-
-browser.find_element_by_tag_name("button").click()
-
-count = 0
-while count < 2:
-    time.sleep(1)
-    count += 1
-
-browser.get('http://rewardrack.com/offer-wall')
-
-header = browser.find_element_by_xpath("//h5")
-print header.text
-
-count = 3
-while count > 0:
-    time.sleep(1)
-    #print str(count) + " Seconds till dank"
-    count = count-1
-
-header1 = header.text
-header1 = header1.replace(" ","")
+    memecount = x
+    refresh = 0
+    title = ""
+    header1 = ""
+    
+    offerWindowHandle = None
+    parentWindowHandle = None
 
 
 
 
-while memecount < 60:
-    print "current itteration count is: " + str(memecount)
-    if  header1.lower() == s1.lower():
-        #print "DANK ACHIEVED"
+    
+    file = open('Credentials.txt')
+    info = file.readlines()
 
-        titleCheck()
+    usernameWords = info[0].replace("\n","")
+    passwordWords = info[1]
 
-        
-        if title.lower() == titleCompare1.lower():
-            mashybals()
+
+
+    browser = webdriver.Firefox()
+
+    browser.delete_all_cookies()
+    browser.get('http://www.rewardrack.com')
+    time.sleep(3)
+    browser.find_element_by_link_text("Sign In").click()
+
+    username = browser.find_element_by_id("loginform-username")
+    username.send_keys(str(usernameWords))
+
+    password = browser.find_element_by_id("loginform-password")
+    password.send_keys(str(passwordWords))
+
+    browser.find_element_by_tag_name("button").click()
+
+    count = 0
+    while count < 2:
+        time.sleep(1)
+        count += 1
+
+    browser.get('http://rewardrack.com/offer-wall')
+
+    header = browser.find_element_by_xpath("//h5")
+    print header.text
+
+    count = 3
+    while count > 0:
+        time.sleep(1)
+        #print str(count) + " Seconds till dank"
+        count = count-1
+
+    header1 = header.text
+    header1 = header1.replace(" ","")
+
+
+    while memecount < 60:
+        print "current itteration count is: " + str(memecount)
+        if  header1.lower() == s1.lower():
+            #print "DANK ACHIEVED"
+
+            titleCheck()
+
             
+            if title.lower() == titleCompare1.lower():
+                mashybals()
+                
+            else:
+                univision()
+                
+            
+
+                
+
+        elif header1.lower() == s2.lower():
+            #print "Dank BLACK ACHIEVED"
+            
+            titleCheck()
+
+            BET()
+
+            
+
+        elif header1.lower() == s3.lower():
+            # print "DANK SMALL BLACK ACHIEVED"
+            titleCheck()
+
+            BET()
+
+        elif header1.lower() == s4.lower():
+            #print "Dank potatoes achieved"
+            titleCheck()
+
+            Mashables()
+
         else:
-            univision()
-            
-        
-
-            
-
-    elif header1.lower() == s2.lower():
-        #print "Dank BLACK ACHIEVED"
-        
-	titleCheck()
-
-	BET()
-
-        
-
-    elif header1.lower() == s3.lower():
-        # print "DANK SMALL BLACK ACHIEVED"
-        titleCheck()
-
-        BET()
-
-    elif header1.lower() == s4.lower():
-        #print "Dank potatoes achieved"
-        titleCheck()
-
-        Mashables()
-
-    else:
-        print "dnak memes are broken"
+            print "dnak memes are broken"
 
 
-browser.quit()
+    browser.quit()
 
-curTime = datetime.datetime.now()
-curTime_String = str(curTime.strftime("%m/%d/%Y-%H:%M"))
-print(curTime_String)
+    curTime = datetime.datetime.now()
+    curTime_String = str(curTime.strftime("%m/%d/%Y-%H:%M"))
+    print(curTime_String)
 
 
-f = open("time.txt", "w")
-f.write(curTime_String)
-f.close()
+    f = open("time.txt", "w")
+    f.write(curTime_String)
+    f.close()
+
+
+
+
+Main(0)
 
 
 
