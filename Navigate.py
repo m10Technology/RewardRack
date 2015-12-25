@@ -12,10 +12,10 @@ if sys.argv[1] == None :
     print ("No Argument Supplied, Running 60 Iterations ")
     iterations = 60
 else :
-    print("Doing " + str(sys.argv[1]) + "Iterations")
+    print("Doing " + str(sys.argv[1]) + " Iteration(s)")
     iterations = sys.argv[1]
 
-mecount = 0
+memecount = 0
 refresh = 0
 s1Buttons = "Earn3.00MorePoints"
 s2Buttons = "Earn6.00MorePoints"
