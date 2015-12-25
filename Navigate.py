@@ -1,15 +1,21 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
+import sys
 import datetime
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
+if sys.argv[1] == None :
+    print ("No Argument Supplied, Running 60 Iterations ")
+    iterations = 60
+else :
+    print("Doing " + str(sys.argv[1]) + "Iterations")
+    iterations = sys.argv[1]
 
-
-memecount = 0
+mecount = 0
 refresh = 0
 s1Buttons = "Earn3.00MorePoints"
 s2Buttons = "Earn6.00MorePoints"
@@ -474,6 +480,7 @@ def Main(x):
     global failCount
     global browser
     global refresh
+    global iterations
 
     memecount = x
     refresh = 0
@@ -530,7 +537,7 @@ def Main(x):
     header1 = header1.replace(" ","")
 
 
-    while memecount < 60:
+    while memecount < iterations:
         print "current itteration count is: " + str(memecount)
         if  header1.lower() == s1.lower():
             #print "DANK ACHIEVED"
@@ -588,8 +595,3 @@ def Main(x):
 
 
 Main(0)
-
-
-
-
-
