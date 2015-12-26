@@ -158,7 +158,7 @@ def univision():
         browser.find_element_by_link_text("Earn 4.00 More Points").click()
 
     elif buttonCheck.lower() == s4Buttons.lower():
-        header1 = discover
+        header1 = "DISCOVERMASHABLE"
         print "mashy has continued"
         OfferWindowHandle = None
         browser.find_element_by_link_text("Earn 2.00 More Points").click()
@@ -257,7 +257,7 @@ def BET():
         browser.find_element_by_xpath("//button").click()
 
     elif buttonCheck.lower() == s4Buttons.lower():
-        header1 = discover
+        header1 = "DISCOVERMASHABLE"
         print "mashy has continued"
         OfferWindowHandle = None
         browser.find_element_by_link_text("Earn 2.00 More Points").click()
@@ -349,7 +349,7 @@ def mashybals():
         browser.find_element_by_xpath("//button").click()
 
     elif buttonCheck.lower() == s4Buttons.lower():
-        header1 = discover
+        header1 = "DISCOVERMASHABLE"
         print "mashy has continued"
         OfferWindowHandle = None
         browser.find_element_by_link_text("Earn 2.00 More Points").click()
@@ -451,7 +451,7 @@ def Mashables():
         print "Potatoes has continued"
         browser.find_element_by_xpath("//button").click()
     elif buttonCheck.lower() == s4Buttons.lower():
-        header1 = discover
+        header1 = "DISCOVERMASHABLE"
         print "mashy has continued"
         browser.find_element_by_link_text("Earn 2.00 More Points").click()
     else:
