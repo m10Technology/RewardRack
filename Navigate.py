@@ -546,7 +546,7 @@ def Main(x):
 
             
             if title.lower() == titleCompare1.lower():
-                mashybals()
+                Mashables()
                 
             else:
                 univision()
