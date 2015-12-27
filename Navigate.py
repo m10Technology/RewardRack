@@ -13,7 +13,7 @@ if sys.argv[1] == None :
     iterations = 60
 else :
     print("Doing " + str(sys.argv[1]) + " Iteration(s)")
-    iterations = sys.argv[1]
+    iterations = int(sys.argv[1])
 
 memecount = 0
 refresh = 0
