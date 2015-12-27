@@ -260,7 +260,7 @@ def BET():
         header1 = "DISCOVERMASHABLE"
         print "mashy has continued"
         OfferWindowHandle = None
-        browser.find_element_by_link_text("Earn 2.00 More Points").click()
+        browser.find_element_by_xpath("//button").click()
 
     else:
         print "Dank has found something new" + buttonCheck.lower()
@@ -352,7 +352,7 @@ def mashybals():
         header1 = "DISCOVERMASHABLE"
         print "mashy has continued"
         OfferWindowHandle = None
-        browser.find_element_by_link_text("Earn 2.00 More Points").click()
+       	browser.find_element_by_xpath("//button").click()
         
     else:
         print "Dank has found something new" + buttonCheck.lower()
@@ -453,7 +453,7 @@ def Mashables():
     elif buttonCheck.lower() == s4Buttons.lower():
         header1 = "DISCOVERMASHABLE"
         print "mashy has continued"
-        browser.find_element_by_link_text("Earn 2.00 More Points").click()
+        browser.find_element_by_xpath("//button").click()
     else:
         print "Dank has found something new" + buttonCheck.lower()
         browser.find_element_by_xpath("//button").click()
