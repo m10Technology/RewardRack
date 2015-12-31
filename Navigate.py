@@ -377,131 +377,136 @@ def Mashables():
 
 
 def Main(x):
-    global s1Buttons
-    global s2Buttons
-    global s3Buttons
-    global s1
-    global s2
-    global s3
-    global titleCompare1
-    global title
-    global header1
-    global parentWindowHandle
-    global offerWindowHandle
-    global memecount
-    global failCount
-    global browser
-    global refresh
-    global iterations
-
-    memecount = x
-    refresh = 0
-    title = ""
-    header1 = ""
+    try:
+        global s1Buttons
+        global s2Buttons
+        global s3Buttons
+        global s1
+        global s2
+        global s3
+        global titleCompare1
+        global title
+        global header1
+        global parentWindowHandle
+        global offerWindowHandle
+        global memecount
+        global failCount
+        global browser
+        global refresh
+        global iterations
     
-    offerWindowHandle = None
-    parentWindowHandle = None
-
-
-
-
+        memecount = x
+        refresh = 0
+        title = ""
+        header1 = ""
+        
+        offerWindowHandle = None
+        parentWindowHandle = None
     
-    file = open('Credentials.txt')
-    info = file.readlines()
-
-    usernameWords = info[0].replace("\n","")
-    passwordWords = info[1]
-
-
-
-    browser = webdriver.Firefox()
-
-    browser.delete_all_cookies()
-    browser.get('http://www.rewardrack.com')
-    time.sleep(3)
-    browser.find_element_by_link_text("Sign In").click()
-
-    username = browser.find_element_by_id("loginform-username")
-    username.send_keys(str(usernameWords))
-
-    password = browser.find_element_by_id("loginform-password")
-    password.send_keys(str(passwordWords))
-
-    browser.find_element_by_tag_name("button").click()
-
-    count = 0
-    while count < 2:
-        time.sleep(1)
-        count += 1
-
-    browser.get('http://rewardrack.com/offer-wall')
-
-    header = browser.find_element_by_xpath("//h5")
-    print header.text
-
-    count = 3
-    while count > 0:
-        time.sleep(1)
-        #print str(count) + " Seconds till dank"
-        count = count-1
-
-    header1 = header.text
-    header1 = header1.replace(" ","")
-
-
-    while memecount < iterations:
-        print "current itteration count is: " + str(memecount)
-        if  header1.lower() == s1.lower():
-            #print "DANK ACHIEVED"
-
-            titleCheck()
-
-            
-            if title.lower() == titleCompare1.lower():
+    
+    
+    
+        
+        file = open('Credentials.txt')
+        info = file.readlines()
+    
+        usernameWords = info[0].replace("\n","")
+        passwordWords = info[1]
+    
+    
+    
+        browser = webdriver.Firefox()
+    
+        browser.delete_all_cookies()
+        browser.get('http://www.rewardrack.com')
+        time.sleep(3)
+        browser.find_element_by_link_text("Sign In").click()
+    
+        username = browser.find_element_by_id("loginform-username")
+        username.send_keys(str(usernameWords))
+    
+        password = browser.find_element_by_id("loginform-password")
+        password.send_keys(str(passwordWords))
+    
+        browser.find_element_by_tag_name("button").click()
+    
+        count = 0
+        while count < 2:
+            time.sleep(1)
+            count += 1
+    
+        browser.get('http://rewardrack.com/offer-wall')
+    
+        header = browser.find_element_by_xpath("//h5")
+        print header.text
+    
+        count = 3
+        while count > 0:
+            time.sleep(1)
+            #print str(count) + " Seconds till dank"
+            count = count-1
+    
+        header1 = header.text
+        header1 = header1.replace(" ","")
+    
+    
+        while memecount < iterations:
+            print "current itteration count is: " + str(memecount)
+            if  header1.lower() == s1.lower():
+                #print "DANK ACHIEVED"
+    
+                titleCheck()
+    
+                
+                if title.lower() == titleCompare1.lower():
+                    Mashables()
+                    
+                else:
+                    univision()
+                    
+                
+    
+                    
+    
+            elif header1.lower() == s2.lower():
+                #print "Dank BLACK ACHIEVED"
+                
+                titleCheck()
+    
+                BET()
+    
+                
+    
+            elif header1.lower() == s3.lower():
+                # print "DANK SMALL BLACK ACHIEVED"
+                titleCheck()
+    
+                BET()
+    
+            elif header1.lower() == s4.lower():
+                #print "Dank potatoes achieved"
+                titleCheck()
+    
                 Mashables()
-                
+    
             else:
-                univision()
-                
-            
-
-                
-
-        elif header1.lower() == s2.lower():
-            #print "Dank BLACK ACHIEVED"
-            
-            titleCheck()
-
-            BET()
-
-            
-
-        elif header1.lower() == s3.lower():
-            # print "DANK SMALL BLACK ACHIEVED"
-            titleCheck()
-
-            BET()
-
-        elif header1.lower() == s4.lower():
-            #print "Dank potatoes achieved"
-            titleCheck()
-
-            Mashables()
-
-        else:
-            print "dnak memes are broken"
-
-
-    browser.quit()
-
-    curTime = datetime.datetime.now()
-    curTime_String = str(curTime.strftime("%m/%d/%Y-%H:%M"))
-    print(curTime_String)
-
-
-    f = open("time.txt", "w")
-    f.write(curTime_String)
-    f.close()
+                print "dnak memes are broken"
+    
+    
+        browser.quit()
+    
+        curTime = datetime.datetime.now()
+        curTime_String = str(curTime.strftime("%m/%d/%Y-%H:%M"))
+        print(curTime_String)
+    
+    
+        f = open("time.txt", "w")
+        f.write(curTime_String)
+        f.close()
+    except:
+        logFile = open("errorlog.txt","w")
+        logFile.write(sys.last_traceback)
+        logFile.close()
 
 
 
