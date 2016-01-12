@@ -505,7 +505,7 @@ def Main(x):
         f.close()
     except:
         logFile = open("errorlog.txt","w")
-        logFile.write(sys.last_traceback)
+        logFile.write(str(sys.last_traceback))
         logFile.close()
 
 
