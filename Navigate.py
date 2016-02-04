@@ -429,6 +429,10 @@ def Main(x):
     password = browser.find_element_by_id("loginform-password")
     password.send_keys(str(passwordWords))
 
+
+    time.sleep(3)
+
+    print "get ready"
     browser.find_element_by_tag_name("button").click()
 
     count = 0
