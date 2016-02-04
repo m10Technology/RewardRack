@@ -433,7 +433,7 @@ def Main(x):
     time.sleep(3)
 
     print "get ready"
-    browser.find_element_by_tag_name("button").click()
+    #browser.find_element_by_tag_name("button").click()
 
     count = 0
     while count < 2:
