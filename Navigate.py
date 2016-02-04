@@ -26,7 +26,9 @@ s1 = "DISCOVERUNIVISION"
 s2 = "DISCOVERBET"
 s3 = "discoversmallbet"
 s4 = "DISCOVERMASHABLE"
+s5 = "DISCOVERRRDISCOVERY"
 titleCompare1 = "REWARDRACK|OFFER:MASHABLE"
+titleCompare5 = "REWARDRACK|OFFER:RRDISCOVERY"
 failCount = 0
 title = ""
 header1 = ""
@@ -434,7 +436,7 @@ def Main(x):
         time.sleep(1)
         count += 1
 
-    browser.get('http://rewardrack.com/offer-wall')
+    browser.get('http://rewardrack.com/rr-discovery')
 
     header = browser.find_element_by_xpath("//h5")
     print header.text
@@ -451,7 +453,7 @@ def Main(x):
 
     while memecount < iterations:
         print "current itteration count is: " + str(memecount)
-        if  header1.lower() == s1.lower():
+        if  header1.lower() == s1.lower() or header1.lower() == s5.lower():
             #print "DANK ACHIEVED"
 
             titleCheck()
