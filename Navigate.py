@@ -47,6 +47,7 @@ def titleCheck():
     global s3
     global s4
     global titleCompare1
+    global titleCompare5
     global title
     global header1
     global parentWindowHandle
@@ -376,6 +377,103 @@ def Mashables():
 
 
 
+def RR_Discovery():
+    global s1Buttons
+    global s2Buttons
+    global s3Buttons
+    global s1
+    global s2
+    global s3
+    global titleCompare1
+    global titleCompare5
+    global title
+    global header1
+    global parentWindowHandle
+    global offerWindowHandle
+    global memecount
+    global failCount
+    global browser
+    waiter = WebDriverWait(browser, 180)
+    try:
+        element = waiter.until(EC.element_to_be_clickable((By.ID,"btn-next-step")))
+        print "Step one done waiting"
+        browser.find_element_by_link_text("Next Step").click()
+        element = waiter.until(EC.element_to_be_clickable((By.ID,"btn-next-step")))
+        print "Step two done waiting"
+        browser.find_element_by_link_text("Next Step").click()
+        element = waiter.until(EC.element_to_be_clickable((By.ID,"btn-next-step")))
+        print "Step three done waiting"
+        browser.find_element_by_link_text("Next Step").click()
+        element = waiter.until(EC.element_to_be_clickable((By.ID,"btn-next-step")))
+        print "Step four done waiting"
+        browser.find_element_by_link_text("Next Step").click()
+        element = waiter.until(EC.element_to_be_clickable((By.ID,"btn-next-step")))
+        print "Step five done waiting"
+        browser.find_element_by_link_text("Next Step").click()
+        element = waiter.until(EC.element_to_be_clickable((By.ID,"btn-next-step")))
+        print "Step six done waiting"
+        browser.find_element_by_link_text("Next Step").click()
+        element = waiter.until(EC.element_to_be_clickable((By.ID,"btn-next-step")))
+        print "Step seven done waiting"
+        browser.find_element_by_link_text("Next Step").click()
+        element = waiter.until(EC.element_to_be_clickable((By.ID,"btn-next-step")))
+        print "Step eight done waiting"
+        browser.find_element_by_link_text("Next Step").click()
+        element = waiter.until(EC.element_to_be_clickable((By.ID,"btn-next-step")))
+        print "Step nine done waiting"
+        browser.find_element_by_link_text("Next Step").click()
+        #element = waiter.until(EC.element_to_be_clickable((By.ID,"btn-next-step")))
+        #print "Step 10 done waiting"
+        #browser.find_element_by_link_text("Next Step").click()
+        element = waiter.until(EC.element_to_be_clickable((By.XPATH,"//a")))
+        print "Claim waiting"
+        browser.find_element_by_xpath("//a").click()
+    except BaseException:
+        failCount += 1
+        print "BROKEN COUNTER: " + str(failCount)
+        if failCount <= 3:
+            browser.quit()
+            Main(memecount)
+        
+
+    time.sleep(2)
+    memecount += 1
+    buttonCheck = browser.find_element_by_xpath("//a").text
+    buttonCheck = buttonCheck.replace(" ","")
+    #print buttonCheck.lower()
+        
+
+    if buttonCheck.lower() == s1Buttons.lower():
+        print "next offer button clicked"
+        browser.find_element_by_link_text("Earn 3.00 More Points").click()
+        header1 = "discoverunivision"
+        print "Spanish has continued"
+
+    elif buttonCheck.lower() == s2Buttons.lower():
+        print "next offer button clicked"
+        browser.find_element_by_link_text("Earn 6.00 More Points").click()
+        header1 = "discoverbet"
+        offerWindowHandle = None
+        print "Black has continued"
+
+    elif buttonCheck.lower() == s3Buttons.lower():
+        header1 = "discoversmallbet"
+        print "Small bet has continued"
+        offerWindowHandle = None
+        browser.find_element_by_link_text("Earn 4.00 More Points").click()
+
+    elif buttonCheck.lower() == s4Buttons.lower():
+        header1 = "DISCOVERMASHABLE"
+        print "mashy has continued"
+        OfferWindowHandle = None
+        browser.find_element_by_link_text("Earn 2.00 More Points").click()
+
+    else:
+        print "Dank has found something new" + buttonCheck.lower()
+        browser.find_element_by_xpath("//a").click()
+
+
+
 
 
 def Main(x):
@@ -465,6 +563,9 @@ def Main(x):
             
             if title.lower() == titleCompare1.lower():
                 Mashables()
+
+            elif title.lower() == titleCompare5.lower():
+                RR_Discovery()
                 
             else:
                 univision()
