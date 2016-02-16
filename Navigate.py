@@ -64,7 +64,7 @@ def titleCheck():
                 parentWindowHandle = browser.current_window_handle
             browser.find_element_by_xpath("//button").click()
             refresh +=1
-        
+
     while not offerWindowHandle:
         for handle in browser.window_handles:
             if handle != parentWindowHandle:
@@ -135,14 +135,14 @@ def univision():
         if failCount <= 3:
             browser.quit()
             Main(memecount)
-        
+
 
     time.sleep(2)
     memecount += 1
     buttonCheck = browser.find_element_by_xpath("//a").text
     buttonCheck = buttonCheck.replace(" ","")
     #print buttonCheck.lower()
-        
+
 
     if buttonCheck.lower() == s1Buttons.lower():
         print "next offer button clicked"
@@ -237,14 +237,14 @@ def BET():
         if failCount <= 3:
             browser.quit()
             Main(memecount)
-        
+
     time.sleep(2)
     memecount += 1
     buttonCheck = browser.find_element_by_xpath("//button").text
     buttonCheck = buttonCheck.replace(" ","")
     print buttonCheck.lower()
 
-    
+
     if buttonCheck.lower() == s1Buttons.lower():
         header1 = "discoverunivision"
         offerWindowHandle = None
@@ -347,7 +347,7 @@ def Mashables():
         if failCount <= 3:
             browser.quit()
             Main(memecount)
-        
+
     time.sleep(2)
     memecount += 1
     buttonCheck = browser.find_element_by_xpath("//button").text
@@ -437,14 +437,14 @@ def RR_Discovery():
         if failCount <= 3:
             browser.quit()
             Main(memecount)
-        
+
 
     time.sleep(2)
     memecount += 1
     buttonCheck = browser.find_element_by_xpath("//a").text
     buttonCheck = buttonCheck.replace(" ","")
     #print buttonCheck.lower()
-        
+
 
     if buttonCheck.lower() == s1Buttons.lower():
         print "next offer button clicked"
@@ -516,7 +516,7 @@ def OneVideo():
     buttonCheck = browser.find_element_by_xpath("//a").text
     buttonCheck = buttonCheck.replace(" ","")
     #print buttonCheck.lower()
-        
+
 
     if buttonCheck.lower() == s1Buttons.lower():
         print "next offer button clicked"
@@ -554,7 +554,7 @@ def OneVideo():
         print "Dank has found something new" + buttonCheck.lower()
         browser.find_element_by_xpath("//a").click()
 
-    
+
 
 
 def Main(x):
@@ -579,14 +579,14 @@ def Main(x):
     refresh = 0
     title = ""
     header1 = ""
-    
+
     offerWindowHandle = None
     parentWindowHandle = None
 
 
 
 
-    
+
     file = open('Credentials.txt')
     info = file.readlines()
 
@@ -622,6 +622,7 @@ def Main(x):
     browser.get('http://rewardrack.com/rr-discovery')
 
     header = browser.find_element_by_xpath("//h5")
+
     print header.text
 
     count = 3
@@ -636,33 +637,33 @@ def Main(x):
 
     while memecount < iterations:
         print "current itteration count is: " + str(memecount)
-        if  header1.lower() == s1.lower() or header1.lower() == s5.lower():
+
+        if  header1.lower() == s1.lower() or header1.lower() == s5.lower() or str(header1.lower()) == "discoverrrdiscoveryunivision":
+
             #print "DANK ACHIEVED"
 
             titleCheck()
 
-            
+
             if title.lower() == titleCompare1.lower():
                 Mashables()
-
             elif title.lower() == titleCompare5.lower():
                 RR_Discovery()
-                
             else:
                 univision()
-                
-            
 
-                
+
+
+
 
         elif header1.lower() == s2.lower():
             #print "Dank BLACK ACHIEVED"
-            
+
             titleCheck()
 
             BET()
 
-            
+
 
         elif header1.lower() == s3.lower():
             # print "DANK SMALL BLACK ACHIEVED"
@@ -687,7 +688,9 @@ def Main(x):
 
 
         else:
-            print "dnak memes are broken"
+            print "DANDY NO SPANKEY!"
+            break
+
 
 
     browser.quit()
