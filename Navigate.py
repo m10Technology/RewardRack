@@ -604,8 +604,10 @@ def Main(x):
         header = browser.find_element_by_xpath("//h5")
     except BaseException:
         print "No Offers, Trying again"
+        browser.quit()
+        time.sleep(1800)
         Main(memecount)
-        
+
     print header.text
 
     count = 3
