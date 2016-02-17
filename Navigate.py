@@ -600,9 +600,12 @@ def Main(x):
         count += 1
 
     browser.get('http://rewardrack.com/rr-discovery')
-
-    header = browser.find_element_by_xpath("//h5")
-
+    try:
+        header = browser.find_element_by_xpath("//h5")
+    except BaseException:
+        print "No Offers, Trying again"
+        Main(memecount)
+        
     print header.text
 
     count = 3
