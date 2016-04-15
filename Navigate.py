@@ -23,7 +23,7 @@ s3Buttons = "Earn4.00MorePoints"
 s4Buttons = "Earn2.00MorePoints"
 s6Buttons = "Earn0.50MorePoints"
 claimButtons = "ClaimPoints"
-s1 = "DISCOVERRRDISCOVERYUNIVISION"
+s1 = "DISCOVERUNIVISION"
 s2 = "DISCOVERBET"
 s3 = "discoversmallbet"
 s4 = "DISCOVERMASHABLE"
@@ -600,13 +600,9 @@ def Main(x):
         count += 1
 
     browser.get('http://rewardrack.com/rr-discovery')
-    try:
-        header = browser.find_element_by_xpath("//h5")
-    except BaseException:
-        print "No Offers, Trying again"
-        browser.quit()
-        time.sleep(1800)
-        Main(memecount)
+    time.sleep(5)
+    header = browser.find_element_by_xpath("//h5")
+
 
     print header.text
 
